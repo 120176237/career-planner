@@ -1,0 +1,9 @@
+{
+  "name": "vip-consult",
+  "version": "1.0.0",
+  "description": "职路星途VIP咨询云函数",
+  "main": "index.js",
+  "dependencies": {
+    "tt-server-sdk": "~1.0.0"
+  }
+}

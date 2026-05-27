@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "职路星途",
+  "navigationBarBackgroundColor": "#ffffff",
+  "navigationBarTextStyle": "black",
+  "backgroundColor": "#f9fafb",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "payment-modal": "/components/payment-modal/payment-modal"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/quiz/quiz",
+    "pages/result/result",
+    "pages/payment/payment",
+    "pages/vip-admin/vip-admin"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#6366f1",
+    "navigationBarTitleText": "职路星途",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#f8fafc"
+  },
+  "sitemapLocation": "sitemap.json"
+}

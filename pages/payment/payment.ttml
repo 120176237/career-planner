@@ -1,0 +1,83 @@
+<view class="container">
+  <!-- 订单摘要 -->
+  <view class="order-summary card">
+    <view class="summary-header">
+      <text class="h3">订单信息</text>
+    </view>
+    
+    <view class="summary-item">
+      <text class="summary-label">购买项目</text>
+      <text class="summary-value">{{productName}}</text>
+    </view>
+    
+    <view class="summary-item">
+      <text class="summary-label">支付金额</text>
+      <text class="summary-price">¥{{price}}</text>
+    </view>
+  </view>
+
+  <!-- 支付方式 -->
+  <view class="payment-methods mt-24">
+    <view class="section-header">
+      <text class="h3">选择支付方式</text>
+    </view>
+    
+    <view class="method-list">
+      <view 
+        class="method-item card {{selectedMethod === 'douyin' ? 'selected' : ''}}"
+        bindtap="selectMethod"
+        data-method="douyin"
+      >
+        <view class="method-icon">🎵</view>
+        <view class="method-info">
+          <view class="method-name">抖音支付</view>
+          <view class="method-desc">推荐使用</view>
+        </view>
+        <view class="method-check">
+          <view wx:if="{{selectedMethod === 'douyin'}}" class="check-icon"></view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 支付说明 -->
+  <view class="payment-notes mt-24">
+    <view class="note-item">
+      <text class="note-icon">🔒</text>
+      <text class="note-text">支付安全，保障您的权益</text>
+    </view>
+    <view class="note-item">
+      <text class="note-icon">💡</text>
+      <text class="note-text">支付后立即获得完整报告</text>
+    </view>
+    <view class="note-item">
+      <text class="note-icon">📱</text>
+      <text class="note-text">支持随时查看结果</text>
+    </view>
+  </view>
+
+  <!-- 支付按钮 -->
+  <view class="payment-footer">
+    <view class="footer-info">
+      <text class="footer-label">合计</text>
+      <text class="footer-price">¥{{price}}</text>
+    </view>
+    <button 
+      class="btn-primary pay-btn" 
+      bindtap="confirmPayment"
+      disabled="{{paying}}"
+    >
+      {{paying ? '处理中...' : '立即支付'}}
+    </button>
+  </view>
+
+  <!-- 模拟支付（测试用） -->
+  <view class="test-section mt-24" wx:if="{{true}}">
+    <view class="section-header">
+      <text class="h3">测试模式</text>
+    </view>
+    <button class="btn-secondary test-btn" bindtap="simulatePayment">
+      模拟支付成功（测试）
+    </button>
+  </view>
+</view>

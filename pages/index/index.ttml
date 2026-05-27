@@ -1,0 +1,1030 @@
+<!-- Header - 娱乐工具定位 -->
+<view class="header">
+  <view class="header-content">
+    <view class="header-left">
+      <view class="header-logo">
+        <view class="header-logo-icon">
+          <view class="icon-bulb">
+            <!-- 5个发光点 -->
+            <view class="bulb-ray bulb-ray1"></view>
+            <view class="bulb-ray bulb-ray2"></view>
+            <view class="bulb-ray bulb-ray3"></view>
+            <view class="bulb-ray bulb-ray4"></view>
+            <view class="bulb-ray bulb-ray5"></view>
+            <!-- 白炽灯圆形 -->
+            <view class="bulb-circle"></view>
+            <!-- 灯座 -->
+            <view class="bulb-base"></view>
+          </view>
+        </view>
+      </view>
+      <view>
+        <view class="header-title">职路星途</view>
+        <view class="header-subtitle">趣味职业测试</view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 强制声明 - 顶部固定 -->
+<view class="disclaimer-header">
+  <text class="disclaimer-text">✨ 本小程序为趣味测试工具，仅供娱乐参考，不构成职业建议</text>
+</view>
+
+<view class="container">
+  <!-- 首页 -->
+  <view class="screen fade-in" wx:if="{{currentScreen === 'home'}}">
+    <!-- Hero Section - H5风格 -->
+    <view class="hero-section fade-in">
+      <view class="hero-content">
+        <view class="h1">
+          <text class="gradient-text">AI趣味</text>职业测试
+        </view>
+        <view class="hero-subtitle">探索你的职业潜能，发现有趣的职业方向（仅供娱乐参考）</view>
+        <button wx:if="{{!lightUsedToday}}" class="btn-primary" bindtap="startQuiz" data-version="light">开始趣味测试 →</button>
+        <button wx:if="{{lightUsedToday}}" class="btn-primary btn-disabled" disabled>
+          <text class="mr-2">🔒</text>今日已测试，明日再来
+        </button>
+        <view class="hero-hint">约5-10分钟 · 每日可免费测试1次 · 仅供娱乐参考</view>
+
+        <!-- 抖音号引导 -->
+        <view class="footer-tip">
+          <text>想获取更多职业规划干货？欢迎关注我的抖音号「AI一人公司职路星途」，持续更新行业分析与测评内容。</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 趣味亮点 -->
+    <view class="value-section mt-32 fade-in animation-delay-200">
+      <view class="grid grid-cols-3 gap-4">
+        <view class="card">
+          <view class="value-icon-box bg-blue-50">
+            <view class="icon-chart">
+              <view class="chart-bar chart-bar1"></view>
+              <view class="chart-bar chart-bar2"></view>
+              <view class="chart-bar chart-bar3"></view>
+            </view>
+          </view>
+          <view class="h3 text-gray-800 mb-8">趋势探索</view>
+          <view class="value-desc">探索当前热门行业趋势，发现有趣的职业方向（仅供娱乐）</view>
+        </view>
+        
+        <view class="card">
+          <view class="value-icon-box bg-purple-50">
+            <view class="icon-users">
+              <view class="user-head"></view>
+              <view class="user-body"></view>
+            </view>
+          </view>
+          <view class="h3 text-gray-800 mb-8">趣味匹配</view>
+          <view class="value-desc">根据你的选择，匹配有趣的职业方向（仅供娱乐参考）</view>
+        </view>
+        
+        <view class="card">
+          <view class="value-icon-box bg-amber-50">
+            <view class="icon-shield">
+              <view class="shield-shape"></view>
+              <view class="shield-check"></view>
+            </view>
+          </view>
+          <view class="h3 text-gray-800 mb-8">趣味提示</view>
+          <view class="value-desc">提供有趣的职业小提示，仅供娱乐参考</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 定价预览 -->
+    <view class="pricing-section mt-32 fade-in animation-delay-400">
+      <view class="section-title text-center mb-24">
+        <view class="h2">选择适合您的版本</view>
+      </view>
+      
+      <view class="pricing-grid">
+        <view class="pricing-card card light">
+          <view class="pricing-header">
+            <view class="pricing-badge">免费</view>
+            <view class="pricing-title">轻量版</view>
+            <view class="pricing-price">
+              <text class="currency">¥</text>
+              <text class="amount">0</text>
+            </view>
+          </view>
+          <view class="pricing-features">
+            <view class="feature-item">
+              <text class="feature-icon">✓</text>
+              <text>8道趣味测试题</text>
+            </view>
+            <view class="feature-item">
+              <text class="feature-icon">✓</text>
+              <text>趣味小建议（仅供娱乐）</text>
+            </view>
+            <view class="feature-item">
+              <text class="feature-icon">✓</text>
+              <text>1条趣味推荐</text>
+            </view>
+          </view>
+          <button 
+            wx:if="{{!lightUsedToday}}"
+            class="btn-primary pricing-btn" 
+            bindtap="startQuiz" 
+            data-version="light"
+          >
+            立即开始
+          </button>
+          <button 
+            wx:if="{{lightUsedToday}}"
+            class="btn-primary pricing-btn btn-disabled" 
+            disabled
+          >
+            🔒 今日已用
+          </button>
+        </view>
+
+        <view class="pricing-card card featured">
+          <view class="pricing-header">
+            <view class="pricing-badge popular">热门</view>
+            <view class="pricing-title">深度版</view>
+            <view class="pricing-price">
+              <text class="currency">¥</text>
+              <text class="amount">9.9</text>
+            </view>
+          </view>
+          <view class="pricing-features">
+            <view class="feature-item">
+              <text class="feature-icon">✓</text>
+              <text>25-30道趣味测试题</text>
+            </view>
+            <view class="feature-item">
+              <text class="feature-icon">✓</text>
+              <text>趣味报告（仅供娱乐）</text>
+            </view>
+            <view class="feature-item">
+              <text class="feature-icon">✓</text>
+              <text>3-5条趣味推荐方向</text>
+            </view>
+            <view class="feature-item">
+              <text class="feature-icon">✓</text>
+              <text>趣味技能探索</text>
+            </view>
+          </view>
+          <button 
+            class="btn-primary pricing-btn" 
+            bindtap="startQuiz" 
+            data-version="deep"
+          >
+            立即升级
+          </button>
+        </view>
+
+        <view class="pricing-card card vip">
+          <view class="pricing-header">
+            <view class="pricing-badge vip">尊享</view>
+            <view class="pricing-title">VIP版</view>
+            <view class="pricing-price">
+              <text class="currency">¥</text>
+              <text class="amount">19.9</text>
+            </view>
+          </view>
+          <view class="pricing-features">
+            <view class="feature-item">
+              <text class="feature-icon">✓</text>
+              <text>深度版全部趣味功能</text>
+            </view>
+            <view class="feature-item">
+              <text class="feature-icon">✓</text>
+              <text>3个趣味问答（仅供娱乐）</text>
+            </view>
+            <view class="feature-item">
+              <text class="feature-icon">✓</text>
+              <text>AI趣味探索</text>
+            </view>
+            <view class="feature-item">
+              <text class="feature-icon">✓</text>
+              <text>趣味提示指南（仅供娱乐）</text>
+            </view>
+            <view class="feature-item">
+              <text class="feature-icon">✓</text>
+              <text>完整行动规划</text>
+            </view>
+          </view>
+          <button 
+            class="btn-primary pricing-btn" 
+            bindtap="startQuiz" 
+            data-version="vip"
+          >
+            尊享体验
+          </button>
+        </view>
+      </view>
+    </view>
+
+    <!-- 用户必看 - 免责声明 -->
+    <view class="disclaimer-section mt-32 fade-in animation-delay-400">
+      <view class="disclaimer-title">📜 用户必看</view>
+      <view class="disclaimer-list">
+        <view class="disclaimer-item">✨ 本小程序为趣味测试工具，仅供娱乐参考，不构成职业建议。</view>
+        <view class="disclaimer-item">本服务为娱乐内容服务，下单后不支持退款。</view>
+        <view class="disclaimer-item">测试结果仅供娱乐，不构成就业、投资、法律、医疗承诺。</view>
+        <view class="disclaimer-item">本平台已做个人信息保护，所有数据仅用于娱乐测试，不泄露给第三方。</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 趣味测试等待页面 -->
+  <view class="screen fade-in" wx:if="{{currentScreen === 'waiting'}}">
+    <view class="waiting-header">
+      <view class="waiting-icon-wrapper">
+        <view class="waiting-icon-bg">
+          <view class="waiting-loader">
+            <view class="loader-ring loader-ring1"></view>
+            <view class="loader-ring loader-ring2"></view>
+            <view class="loader-center">
+              <text class="loader-icon">✨</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    
+    <view class="waiting-card">
+      <view class="waiting-card-header">
+        <text class="waiting-title">AI正在生成趣味测试结果</text>
+        <text class="waiting-subtitle">预计需要5-10分钟，请稍候（仅供娱乐参考）</text>
+      </view>
+      
+      <view class="waiting-divider"></view>
+      
+      <view class="waiting-message">
+        <text class="waiting-message-text">{{waitingMessage}}</text>
+        <text class="waiting-dots">
+          <text class="waiting-dot waiting-dot1">·</text>
+          <text class="waiting-dot waiting-dot2">·</text>
+          <text class="waiting-dot waiting-dot3">·</text>
+        </text>
+      </view>
+      
+      <view class="waiting-progress-wrapper">
+        <view class="waiting-progress-track">
+          <view class="waiting-progress-bar"></view>
+        </view>
+        <text class="waiting-progress-tip">正在分析中...</text>
+      </view>
+    </view>
+    
+    <view class="waiting-features">
+      <view class="waiting-feature-item">
+        <view class="waiting-feature-icon-bg waiting-feature-icon-bg-1">
+          <text class="waiting-feature-icon">📊</text>
+        </view>
+        <text class="waiting-feature-text">趣味趋势探索</text>
+      </view>
+      <view class="waiting-feature-item">
+        <view class="waiting-feature-icon-bg waiting-feature-icon-bg-2">
+          <text class="waiting-feature-icon">🎯</text>
+        </view>
+        <text class="waiting-feature-text">趣味匹配</text>
+      </view>
+      <view class="waiting-feature-item">
+        <view class="waiting-feature-icon-bg waiting-feature-icon-bg-3">
+          <text class="waiting-feature-icon">🚀</text>
+        </view>
+        <text class="waiting-feature-text">趣味推荐方向</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 用户类型选择 - 轻量版 -->
+  <view class="screen fade-in identity-section" wx:if="{{currentScreen === 'userType'}}">
+    <button bindtap="goBackHome" class="identity-back-btn">
+      <text>← 返回</text>
+    </button>
+    <view class="identity-header">
+      <text class="identity-title">请选择您的身份</text>
+      <text class="identity-subtitle">仅供娱乐参考，我们将为您提供趣味测试</text>
+    </view>
+
+    <view class="identity-card-list">
+      <button bindtap="selectUserType" data-type="1" class="identity-card identity-card-blue">
+        <text class="identity-card-icon">👨‍💻</text>
+        <text class="identity-card-title">30-40岁转型群体</text>
+        <text class="identity-card-desc">失业/被裁员/行业下行，需要找到维持收入的同时完成转型</text>
+        <view class="identity-tags">
+          <text class="identity-tag identity-tag-blue">技术类</text>
+          <text class="identity-tag identity-tag-blue">管理类</text>
+        </view>
+      </button>
+      <button bindtap="selectUserType" data-type="2" class="identity-card identity-card-purple">
+        <text class="identity-card-icon">🎓</text>
+        <text class="identity-card-title">应届/毕业学生</text>
+        <text class="identity-card-desc">刚毕业或毕业1-3年，需要找到长期发展的方向</text>
+        <view class="identity-tags">
+          <text class="identity-tag identity-tag-purple">理科</text>
+          <text class="identity-tag identity-tag-purple">文科</text>
+        </view>
+      </button>
+      <button bindtap="selectUserType" data-type="3" class="identity-card identity-card-amber">
+        <text class="identity-card-icon">👨‍👩‍👧</text>
+        <text class="identity-card-title">学生家长</text>
+        <text class="identity-card-desc">小学/初中/高中学生家长，用长期视角规划孩子未来</text>
+        <view class="identity-tags">
+          <text class="identity-tag identity-tag-amber">小学</text>
+          <text class="identity-tag identity-tag-amber">初中</text>
+          <text class="identity-tag identity-tag-amber">高中</text>
+        </view>
+      </button>
+    </view>
+  </view>
+
+  <!-- 用户类型选择 - 深度版 -->
+  <view class="screen fade-in identity-section" wx:if="{{currentScreen === 'userTypeDeep'}}">
+    <button bindtap="goBackHome" class="identity-back-btn">
+      <text>← 返回</text>
+    </button>
+    <view class="identity-header">
+      <text class="identity-title">请选择您的身份</text>
+      <text class="identity-subtitle">深度版将提供趣味报告（仅供娱乐参考）</text>
+    </view>
+
+    <view class="identity-card-list">
+      <button bindtap="startDeepWithPayment" data-type="1" class="identity-card identity-card-blue">
+        <text class="identity-card-icon">👨‍💻</text>
+        <text class="identity-card-title">30-40岁转型群体</text>
+        <text class="identity-card-desc">仅供娱乐参考：探索职业趣味方向</text>
+        <view class="identity-tags">
+          <text class="identity-tag identity-tag-blue">趣味探索</text>
+          <text class="identity-tag identity-tag-blue">仅供娱乐</text>
+        </view>
+      </button>
+      <button bindtap="startDeepWithPayment" data-type="2" class="identity-card identity-card-purple">
+        <text class="identity-card-icon">🎓</text>
+        <text class="identity-card-title">应届/毕业学生</text>
+        <text class="identity-card-desc">仅供娱乐参考：探索职业趣味方向</text>
+        <view class="identity-tags">
+          <text class="identity-tag identity-tag-purple">趣味探索</text>
+          <text class="identity-tag identity-tag-purple">仅供娱乐</text>
+        </view>
+      </button>
+      <button bindtap="startDeepWithPayment" data-type="3" class="identity-card identity-card-amber">
+        <text class="identity-card-icon">👨‍👩‍👧</text>
+        <text class="identity-card-title">学生家长</text>
+        <text class="identity-card-desc">仅供娱乐参考：探索趣味职业方向</text>
+        <view class="identity-tags">
+          <text class="identity-tag identity-tag-amber">趣味探索</text>
+          <text class="identity-tag identity-tag-amber">仅供娱乐</text>
+        </view>
+      </button>
+    </view>
+  </view>
+
+  <!-- 用户类型选择 - VIP版 -->
+  <view class="screen fade-in identity-section" wx:if="{{currentScreen === 'userTypeVip'}}">
+    <button bindtap="goBackHome" class="identity-back-btn">
+      <text>← 返回</text>
+    </button>
+    <view class="identity-header">
+      <text class="identity-title">请选择您的身份</text>
+      <text class="identity-subtitle">VIP专属趣味体验 · 仅供娱乐参考</text>
+    </view>
+
+    <view class="identity-card-list">
+      <button bindtap="startVipWithPayment" data-type="1" class="identity-card identity-card-vip">
+        <text class="identity-card-icon">👨‍💻</text>
+        <text class="identity-card-title">30-40岁转型群体</text>
+        <text class="identity-card-desc">仅供娱乐参考：探索趣味职业方向</text>
+        <view class="identity-tags">
+          <text class="identity-tag identity-tag-vip">VIP专属</text>
+          <text class="identity-tag identity-tag-vip">趣味体验</text>
+        </view>
+      </button>
+      <button bindtap="startVipWithPayment" data-type="2" class="identity-card identity-card-vip">
+        <text class="identity-card-icon">🎓</text>
+        <text class="identity-card-title">应届/毕业学生</text>
+        <text class="identity-card-desc">仅供娱乐参考：探索趣味职业方向</text>
+        <view class="identity-tags">
+          <text class="identity-tag identity-tag-vip">VIP专属</text>
+          <text class="identity-tag identity-tag-vip">趣味体验</text>
+        </view>
+      </button>
+      <button bindtap="startVipWithPayment" data-type="3" class="identity-card identity-card-vip">
+        <text class="identity-card-icon">👨‍👩‍👧</text>
+        <text class="identity-card-title">学生家长</text>
+        <text class="identity-card-desc">仅供娱乐参考：探索趣味职业方向</text>
+        <view class="identity-tags">
+          <text class="identity-tag identity-tag-vip">VIP专属</text>
+          <text class="identity-tag identity-tag-vip">趣味体验</text>
+        </view>
+      </button>
+    </view>
+  </view>
+
+  <!-- 趣味测试页面 - 轻量版 -->
+  <view class="screen fade-in" wx:if="{{currentScreen === 'quiz'}}">
+    <button bindtap="goBackUserType" class="flex items-center gap-2 text-gray-500 hover:text-gray-700 mb-6 back-btn">
+      <text>←</text>
+      <text>返回</text>
+    </button>
+
+    <!-- 进度条 -->
+    <view class="mb-6">
+      <view class="flex justify-between text-sm text-gray-500 mb-2">
+        <text>趣味问题 {{currentQuestion + 1}}/{{quizQuestions.length}}</text>
+        <text>{{quizProgress}}%</text>
+      </view>
+      <view class="h-2 bg-gray-200 rounded-full overflow-hidden">
+        <view class="h-full progress-bar rounded-full transition-all duration-500" style="width: {{quizProgress}}%"></view>
+      </view>
+    </view>
+
+    <!-- 问题容器 -->
+    <view class="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm mb-6" wx:if="{{currentQuestionData}}">
+      <text class="text-xl font-semibold mb-6 block">{{currentQuestionData.text}}</text>
+      <view class="space-y-3">
+        <button 
+          wx:for="{{currentQuestionData.options}}" 
+          wx:key="value" 
+          bindtap="selectOption" 
+          data-value="{{item.value}}" 
+          class="option-btn w-full text-left p-4 rounded-xl border-2 border-gray-200 hover:border-primary/50 transition {{selectedAnswer === item.value ? 'selected' : ''}}"
+        >
+          {{item.label}}
+        </button>
+      </view>
+    </view>
+
+    <!-- 返回上一题 -->
+    <view class="flex justify-between items-center">
+      <button bindtap="quizBack" class="back-btn text-gray-500 hover:text-primary flex items-center gap-2 font-medium {{currentQuestion === 0 ? 'disabled' : ''}}">
+        <text>←</text>
+        <text>返回上一题</text>
+      </button>
+    </view>
+  </view>
+
+  <!-- 趣味测试结果页面 - 轻量版 -->
+  <view class="screen fade-in" wx:if="{{currentScreen === 'result'}}">
+    <view class="text-center py-8">
+      <view class="w-20 h-20 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center mx-auto mb-6">
+        <text class="text-white text-3xl">✨</text>
+      </view>
+      <text class="text-3xl font-bold mb-4 block">趣味测试结果</text>
+      <text class="text-gray-500 mb-4 block">仅供娱乐参考，不构成职业建议</text>
+      
+      <button bindtap="resetQuiz" class="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-medium">
+        <text>↺</text>
+        <text>返回首页</text>
+      </button>
+    </view>
+
+    <!-- 结果卡片 -->
+    <view class="rp-card" wx:if="{{lightResult}}">
+      <view class="rp-summary">
+        <text class="rp-s-heading" wx:if="{{lightResult.summary.result}}">{{lightResult.summary.result}}</text>
+        <text class="rp-s-desc" wx:if="{{lightResult.summary.analysis}}">{{lightResult.summary.analysis}}</text>
+      </view>
+
+      <view class="rp-divider" wx:if="{{lightResult.macroTrends && lightResult.macroTrends.length > 0}}">
+        <text class="rp-section-title">宏观趋势分析</text>
+        <view wx:for="{{lightResult.macroTrends}}" wx:key="trend">
+          <view class="rp-sub-card">
+            <text class="rp-skill-title" style="color:#4f46e5;">{{item.trend}}</text>
+            <text class="rp-text-xs">{{item.period}} · {{item.outlook}}</text>
+            <text class="rp-text-desc">{{item.analysis}}</text>
+          </view>
+        </view>
+      </view>
+
+      <view class="rp-divider" wx:if="{{lightResult.persona && lightResult.persona.length > 0}}">
+        <text class="rp-section-title">个人画像解读</text>
+        <view wx:for="{{lightResult.persona}}" wx:key="label">
+          <view class="persona-item rp-mb-sm">
+            <text style="color:#6366f1;">•</text>
+            <text class="persona-value"><text class="rp-text-sm" style="font-weight:600;">{{item.label}}:</text> <text class="rp-text-sm">{{item.value}}</text></text>
+          </view>
+        </view>
+      </view>
+
+      <view class="rp-divider" wx:if="{{lightResult.recommendedIndustries && lightResult.recommendedIndustries.length > 0}}">
+        <text class="rp-section-title">推荐赛道</text>
+        <view wx:for="{{lightResult.recommendedIndustries}}" wx:key="name">
+          <view class="rp-industry-card">
+            <view class="rp-flex-row">
+              <text class="rp-flex-left" style="font-weight:600;color:#1e293b;">{{item.name}}</text>
+              <text class="rp-flex-right rp-tag-good">{{item.outlook}}</text>
+            </view>
+            <text class="rp-text-desc">{{item.reason}}</text>
+            <view class="rp-flex-tags" wx:if="{{item.hotRoles}}">
+              <text class="rp-tag-role" wx:for="{{item.hotRoles}}" wx:for-item="role" wx:key="*this">{{role}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class="rp-divider" wx:if="{{lightResult.risks && lightResult.risks.length > 0}}">
+        <text class="rp-section-title">风险提示</text>
+        <view wx:for="{{lightResult.risks}}" wx:key="type">
+          <view class="rp-risk-card">
+            <text class="rp-risk-title">⚡ {{item.type || item}}</text>
+            <text class="rp-risk-body" wx:if="{{item.description || item.analysis}}">{{item.description || item.analysis}}</text>
+            <text class="rp-risk-mitigation" wx:if="{{item.mitigation}}">应对建议: {{item.mitigation}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="rp-upgrade">
+      <text class="rp-upg-title">想要更深度的分析？</text>
+      <text class="rp-upg-desc">升级到深度版获取完整报告</text>
+      <button bindtap="startQuiz" data-version="deep" class="btn-primary">升级深度版</button>
+    </view>
+  </view>
+
+  <!-- 趣味测试页面 - 深度版 -->
+  <view class="screen fade-in" wx:if="{{currentScreen === 'quizDeep'}}">
+    <button bindtap="resetDeepQuiz" class="flex items-center gap-2 text-gray-500 hover:text-gray-700 mb-6 back-btn">
+      <text>←</text>
+      <text>返回</text>
+    </button>
+
+    <!-- 进度条 -->
+    <view class="mb-6">
+      <view class="flex justify-between text-sm text-gray-500 mb-2">
+        <text>趣味问题 {{deepQuizProgressText}}</text>
+        <text>{{deepQuizProgress}}%</text>
+      </view>
+      <view class="h-2 bg-gray-200 rounded-full overflow-hidden">
+        <view class="h-full progress-bar rounded-full transition-all duration-500" style="width: {{deepQuizProgress}}%"></view>
+      </view>
+    </view>
+
+    <!-- 问题容器 -->
+    <view class="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm mb-6" wx:if="{{deepQuestionText}}">
+      <text class="text-xl font-semibold mb-6 block">{{deepQuestionText}}</text>
+      <view class="space-y-3" wx:if="{{deepQuestionOptions}}">
+        <button 
+          wx:for="{{deepQuestionOptions}}" 
+          wx:key="value" 
+          bindtap="selectOptionDeep" 
+          data-value="{{item.value}}" 
+          class="option-btn w-full text-left p-4 rounded-xl border-2 border-gray-200 hover:border-primary/50 transition {{deepSelectedAnswer === item.value ? 'selected' : ''}}"
+        >
+          {{item.label}}
+        </button>
+      </view>
+    </view>
+
+    <!-- 返回上一题 -->
+    <view class="flex justify-between items-center">
+      <button bindtap="quizBackDeep" class="back-btn text-gray-500 hover:text-primary flex items-center gap-2 font-medium {{currentQuestionDeep === 0 ? 'disabled' : ''}}">
+        <text>←</text>
+        <text>返回上一题</text>
+      </button>
+    </view>
+  </view>
+
+  <!-- 趣味测试结果页面 - 深度版 -->
+  <view class="screen fade-in" wx:if="{{currentScreen === 'resultDeep'}}">
+    <view class="text-center py-8">
+      <view class="w-20 h-20 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center mx-auto mb-6">
+        <text class="text-white text-3xl">✨</text>
+      </view>
+      <text class="text-3xl font-bold mb-4 block">深度趣味测试结果</text>
+      <text class="text-gray-500 mb-4 block">仅供娱乐参考，不构成职业建议</text>
+      
+      <button bindtap="resetDeepQuiz" class="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-medium">
+        <text>↺</text>
+        <text>返回首页</text>
+      </button>
+    </view>
+
+    <!-- 深度结果卡片 -->
+    <view class="rp-card" wx:if="{{deepResult}}">
+      <view class="rp-summary">
+        <text class="rp-s-heading" wx:if="{{deepResult.summary.result}}">{{deepResult.summary.result}}</text>
+        <text class="rp-s-desc" wx:if="{{deepResult.summary.analysis}}">{{deepResult.summary.analysis}}</text>
+      </view>
+
+      <view class="rp-divider" wx:if="{{deepResult.macroTrends && deepResult.macroTrends.length > 0}}">
+        <text class="rp-section-title">宏观趋势分析</text>
+        <view wx:for="{{deepResult.macroTrends}}" wx:key="trend">
+          <view class="rp-inner-card">
+            <view class="rp-flex-row">
+              <text class="rp-flex-left" style="font-weight:500;color:#1e293b;">{{item.trend}}</text>
+              <text class="rp-flex-right rp-tag-good" wx:if="{{item.outlook === '长期看好'}}">{{item.outlook}} · {{item.period}}</text>
+              <text class="rp-flex-right rp-tag-mid" wx:if="{{item.outlook === '中期看好'}}">{{item.outlook}} · {{item.period}}</text>
+              <text class="rp-flex-right rp-tag-short" wx:if="{{item.outlook === '短期过渡'}}">{{item.outlook}} · {{item.period}}</text>
+            </view>
+            <text class="rp-text-desc">{{item.analysis}}</text>
+          </view>
+        </view>
+      </view>
+
+      <view class="rp-divider" wx:if="{{deepResult.persona && deepResult.persona.length > 0}}">
+        <text class="rp-section-title">个人画像解读</text>
+        <view wx:for="{{deepResult.persona}}" wx:key="label">
+          <view class="rp-inner-card">
+            <text class="rp-text-xs" style="color:#6b7280;margin-bottom:8rpx;">🎯 {{item.label}}</text>
+            <text class="rp-text-sm">{{item.value}}</text>
+          </view>
+        </view>
+      </view>
+
+      <view class="rp-divider" wx:if="{{deepResult.recommendedIndustries && deepResult.recommendedIndustries.length > 0}}">
+        <text class="rp-section-title">推荐赛道</text>
+        <view wx:for="{{deepResult.recommendedIndustries}}" wx:key="name">
+          <view class="rp-industry-card">
+            <view class="rp-flex-row">
+              <text class="rp-flex-left" style="font-weight:600;color:#1e293b;">{{item.name}}</text>
+              <text class="rp-flex-right rp-tag-good">{{item.outlook}}</text>
+            </view>
+            <text class="rp-text-desc">{{item.reason}}</text>
+            <view class="rp-flex-tags" wx:if="{{item.hotRoles}}">
+              <text class="rp-tag-role" wx:for="{{item.hotRoles}}" wx:for-item="role" wx:key="*this">{{role}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class="rp-divider" wx:if="{{deepResult.skillGap && deepResult.skillGap.length > 0}}">
+        <text class="rp-section-title">技能差距分析</text>
+        <view wx:for="{{deepResult.skillGap}}" wx:key="industry">
+          <view class="rp-skill-card">
+            <text class="rp-skill-title">{{item.industry || '未知领域'}}</text>
+            <text class="rp-text-sm">{{item.analysis || ''}}</text>
+            <view class="rp-skill-grid" wx:if="{{(item.current && item.current.length) || (item.missing && item.missing.length)}}">
+              <view class="rp-skill-col" wx:if="{{item.current && item.current.length}}">
+                <text class="rp-skill-subtitle rp-skill-subtitle-good">已有技能</text>
+                <text class="rp-text-xs" wx:for="{{item.current}}" wx:for-item="skill" wx:key="*this">• {{skill}}</text>
+              </view>
+              <view class="rp-skill-col" wx:if="{{item.missing && item.missing.length}}">
+                <text class="rp-skill-subtitle rp-skill-subtitle-bad">待提升</text>
+                <text class="rp-text-xs" wx:for="{{item.missing}}" wx:for-item="skill" wx:key="*this">• {{skill}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class="rp-divider" wx:if="{{deepResult.actionPlan && deepResult.actionPlan.length > 0}}">
+        <text class="rp-section-title">行动规划</text>
+        <view wx:for="{{deepResult.actionPlan}}" wx:key="industry">
+          <view class="rp-action-card">
+            <text class="rp-action-title">{{item.industry || '行动规划'}}</text>
+            <view class="rp-action-body" wx:if="{{item.actions && item.actions.length}}">
+              <view class="rp-action-step" wx:for="{{item.actions}}" wx:for-item="action" wx:key="phase">
+                <text class="rp-step-tag">{{action.phase || ''}}</text>
+                <text class="rp-step-text">{{action.description || action.analysis || ''}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class="rp-divider" wx:if="{{deepResult.risks && deepResult.risks.length > 0}}">
+        <text class="rp-section-title">风险提示</text>
+        <view wx:for="{{deepResult.risks}}" wx:key="type">
+          <view class="rp-risk-card">
+            <text class="rp-risk-title">⚡ {{item.type || '风险'}}</text>
+            <text class="rp-risk-body">{{item.description || item.analysis || ''}}</text>
+            <text class="rp-risk-mitigation" wx:if="{{item.mitigation}}">应对建议: {{item.mitigation}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- VIP升级提示 -->
+    <view class="text-center mt-8">
+      <view class="bg-gradient-to-r from-amber-50 to-yellow-50 rounded-2xl p-6 border border-amber-200">
+        <text class="text-amber-800 font-semibold block mb-2">想要专属咨询？</text>
+        <text class="text-amber-600 text-sm block mb-4">升级到VIP版获取个性化咨询</text>
+        <button bindtap="startQuiz" data-version="vip" class="btn-primary" style="background: linear-gradient(135deg, #f59e0b, #fcd34d);">
+          升级VIP版（¥19.9）
+        </button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 趣味测试页面 - VIP版 -->
+  <view class="screen fade-in" wx:if="{{currentScreen === 'quizVip'}}">
+    <button bindtap="resetVipQuiz" class="flex items-center gap-2 text-gray-500 hover:text-gray-700 mb-6 back-btn">
+      <text>←</text>
+      <text>返回</text>
+    </button>
+
+    <!-- 进度条 -->
+    <view class="mb-6">
+      <view class="flex justify-between text-sm text-gray-500 mb-2">
+        <text>趣味问题 {{vipQuizProgressText}}</text>
+        <text>{{vipQuizProgress}}%</text>
+      </view>
+      <view class="h-2 bg-gray-200 rounded-full overflow-hidden">
+        <view class="h-full progress-bar rounded-full transition-all duration-500" style="width: {{vipQuizProgress}}%"></view>
+      </view>
+    </view>
+
+    <!-- 问题容器 -->
+    <view class="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm mb-6" wx:if="{{vipQuestionText}}">
+      <text class="text-xl font-semibold mb-6 block">{{vipQuestionText}}</text>
+      <view class="space-y-3" wx:if="{{vipQuestionOptions}}">
+        <button 
+          wx:for="{{vipQuestionOptions}}" 
+          wx:key="value" 
+          bindtap="selectOptionVip" 
+          data-value="{{item.value}}" 
+          class="option-btn w-full text-left p-4 rounded-xl border-2 border-gray-200 hover:border-primary/50 transition {{vipSelectedAnswer === item.value ? 'selected' : ''}}"
+        >
+          {{item.label}}
+        </button>
+      </view>
+    </view>
+
+    <!-- 返回上一题 -->
+    <view class="flex justify-between items-center">
+      <button bindtap="quizBackVip" class="back-btn text-gray-500 hover:text-primary flex items-center gap-2 font-medium {{currentQuestionVip === 0 ? 'disabled' : ''}}">
+        <text>←</text>
+        <text>返回上一题</text>
+      </button>
+    </view>
+  </view>
+
+  <!-- VIP趣味问答页面 -->
+  <view class="screen fade-in" wx:if="{{currentScreen === 'vipConsult'}}">
+    <button bindtap="resetVipQuiz" class="flex items-center gap-2 text-gray-500 hover:text-gray-700 mb-6 back-btn">
+      <text>←</text>
+      <text>返回</text>
+    </button>
+
+    <!-- 进度条 -->
+    <view class="mb-6" wx:if="{{!showVipEmailSection}}">
+      <view class="flex justify-between text-sm text-gray-500 mb-2">
+        <text>趣味问答 {{vipConsultProgressText}}</text>
+        <text>{{vipConsultProgress}}%</text>
+      </view>
+      <view class="h-2 bg-gray-200 rounded-full overflow-hidden">
+        <view class="h-full progress-bar rounded-full transition-all duration-500" style="width: {{vipConsultProgress}}%"></view>
+      </view>
+      
+      <!-- 返回上一题 -->
+      <view class="flex justify-between items-center mt-4">
+        <button bindtap="consultBack" class="back-btn text-gray-500 hover:text-primary flex items-center gap-2 font-medium {{currentConsultQuestion === 0 ? 'disabled' : ''}}">
+          <text>←</text>
+          <text>返回上一题</text>
+        </button>
+      </view>
+    </view>
+
+    <!-- 趣味问答问题 -->
+    <view class="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm mb-6" wx:if="{{!showVipEmailSection}}">
+      <text class="text-xl font-semibold mb-6 block" wx:if="{{vipConsultQuestionText}}">{{vipConsultQuestionText}}</text>
+      <textarea 
+        class="w-full p-4 border-2 border-gray-200 rounded-xl focus:border-primary transition min-h-32" 
+        placeholder="{{vipConsultPlaceholder}}" 
+        value="{{vipConsultAnswer}}"
+        bindinput="onVipConsultInput"
+      ></textarea>
+    </view>
+
+    <!-- 提交按钮 -->
+    <button 
+      wx:if="{{!showVipEmailSection}}"
+      bindtap="submitVipConsult" 
+      class="btn-primary w-full"
+    >
+      {{currentConsultQuestion < vipConsultQuestions.length - 1 ? '下一个问题' : '完成趣味问答'}}
+    </button>
+
+    <!-- 邮箱收集 -->
+    <view class="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm mb-6" wx:if="{{showVipEmailSection}}">
+      <text class="text-xl font-semibold mb-4 block">接收您的趣味测试结果</text>
+      <text class="text-gray-500 mb-6 block">请填写您的邮箱地址，我们将把趣味测试结果发送给您（仅供娱乐参考）</text>
+      <input 
+        class="w-full p-4 border-2 border-gray-200 rounded-xl focus:border-primary transition mb-4" 
+        placeholder="请输入邮箱地址" 
+        value="{{vipUserEmail}}"
+        bindinput="onVipEmailInput"
+      ></input>
+      <button bindtap="submitVipEmail" class="btn-primary w-full">
+        生成趣味测试结果
+      </button>
+    </view>
+  </view>
+
+  <!-- 趣味测试结果页面 - VIP版 -->
+  <view class="screen fade-in" wx:if="{{currentScreen === 'resultVip'}}">
+    <view class="text-center py-8">
+      <view class="w-20 h-20 rounded-full bg-gradient-to-br from-amber-500 to-yellow-500 flex items-center justify-center mx-auto mb-6">
+        <text class="text-white text-3xl">✨</text>
+      </view>
+      <text class="text-3xl font-bold mb-4 block">VIP趣味测试结果</text>
+      <text class="text-gray-500 mb-4 block">仅供娱乐参考，不构成职业建议</text>
+      
+      <button bindtap="resetVipQuiz" class="inline-flex items-center gap-2 text-amber-600 hover:text-amber-700 font-medium">
+        <text>↺</text>
+        <text>返回首页</text>
+      </button>
+    </view>
+
+    <!-- 趣味提示弹窗 -->
+    <view class="fixed top-20 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-amber-500 to-yellow-500 text-white px-6 py-3 rounded-full shadow-lg z-50" wx:if="{{showExpertTip}}">
+      <text class="font-semibold">✨ 趣味提示:</text> 本测试仅供娱乐，不构成职业建议
+    </view>
+
+    <!-- VIP结果卡片 -->
+    <view class="rp-card-vip" wx:if="{{vipResult}}">
+      <view class="rp-vip-score" wx:if="{{vipResult.score || vipResult.summary.score}}">
+        <text class="rp-score-label">综合匹配度评分</text>
+        <text class="rp-score-num">{{vipResult.score || vipResult.summary.score || '85'}}</text>
+        <view class="rp-score-roles" wx:if="{{vipResult.recommendedIndustries && vipResult.recommendedIndustries.length > 0}}">
+          <text wx:for="{{vipResult.recommendedIndustries}}" wx:for-item="ind" wx:key="name" class="rp-score-role">{{ind.name}}</text>
+        </view>
+      </view>
+
+      <view class="rp-summary-vip">
+        <text class="rp-s-heading" wx:if="{{vipResult.summary.result}}">{{vipResult.summary.result}}</text>
+        <text class="rp-s-desc" wx:if="{{vipResult.summary.analysis}}">{{vipResult.summary.analysis}}</text>
+      </view>
+
+      <view class="rp-divider" wx:if="{{vipResult.macroTrends && vipResult.macroTrends.length > 0}}">
+        <text class="rp-section-title">宏观趋势分析</text>
+        <view wx:for="{{vipResult.macroTrends}}" wx:key="trend">
+          <view class="rp-inner-card">
+            <view class="rp-flex-row">
+              <text class="rp-flex-left" style="font-weight:500;color:#1e293b;">{{item.trend}}</text>
+              <text class="rp-flex-right rp-tag-good" wx:if="{{item.outlook === '长期看好'}}">{{item.outlook}} · {{item.period}}</text>
+              <text class="rp-flex-right rp-tag-mid" wx:if="{{item.outlook === '中期看好'}}">{{item.outlook}} · {{item.period}}</text>
+              <text class="rp-flex-right rp-tag-short" wx:if="{{item.outlook === '短期过渡'}}">{{item.outlook}} · {{item.period}}</text>
+            </view>
+            <text class="rp-text-desc">{{item.analysis}}</text>
+          </view>
+        </view>
+      </view>
+
+      <view class="rp-divider" wx:if="{{vipResult.persona && vipResult.persona.length > 0}}">
+        <text class="rp-section-title">个人画像解读</text>
+        <view wx:for="{{vipResult.persona}}" wx:key="label">
+          <view class="rp-vip-persona">
+            <text class="rp-text-xs" style="color:#6b7280;margin-bottom:8rpx;">📊 {{item.label}}</text>
+            <text class="rp-text-sm">{{item.value}}</text>
+          </view>
+        </view>
+      </view>
+
+      <view class="rp-divider" wx:if="{{vipResult.recommendedIndustries && vipResult.recommendedIndustries.length > 0}}">
+        <text class="rp-section-title">推荐赛道</text>
+        <view wx:for="{{vipResult.recommendedIndustries}}" wx:key="name">
+          <view class="rp-industry-card-vip">
+            <view class="rp-flex-row">
+              <text class="rp-flex-left" style="font-weight:600;color:#1e293b;">{{item.name}}</text>
+              <text class="rp-flex-right rp-tag-good">{{item.outlook}}</text>
+            </view>
+            <text class="rp-text-desc">{{item.reason}}</text>
+            <view class="rp-flex-tags" wx:if="{{item.hotRoles}}">
+              <text class="rp-tag-role" wx:for="{{item.hotRoles}}" wx:for-item="role" wx:key="*this">{{role}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class="rp-divider" wx:if="{{vipResult.skillGap && vipResult.skillGap.length > 0}}">
+        <text class="rp-section-title">技能差距分析</text>
+        <view wx:for="{{vipResult.skillGap}}" wx:key="industry">
+          <view class="rp-vip-skill">
+            <text class="rp-skill-title">{{item.industry || '未知领域'}}</text>
+            <text class="rp-text-sm">{{item.analysis || ''}}</text>
+            <view class="rp-skill-grid" wx:if="{{(item.current && item.current.length) || (item.missing && item.missing.length)}}">
+              <view class="rp-skill-col" wx:if="{{item.current && item.current.length}}">
+                <text class="rp-skill-subtitle rp-skill-subtitle-good">已有技能</text>
+                <text class="rp-text-xs" wx:for="{{item.current}}" wx:for-item="skill" wx:key="*this">• {{skill}}</text>
+              </view>
+              <view class="rp-skill-col" wx:if="{{item.missing && item.missing.length}}">
+                <text class="rp-skill-subtitle rp-skill-subtitle-bad">待提升</text>
+                <text class="rp-text-xs" wx:for="{{item.missing}}" wx:for-item="skill" wx:key="*this">• {{skill}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class="rp-divider" wx:if="{{vipResult.actionPlan && vipResult.actionPlan.length > 0}}">
+        <text class="rp-section-title">行动规划</text>
+        <view wx:for="{{vipResult.actionPlan}}" wx:key="industry">
+          <view class="rp-vip-action">
+            <text class="rp-action-title">{{item.industry || '行动规划'}}</text>
+            <view class="rp-action-body" wx:if="{{item.actions && item.actions.length}}">
+              <view class="rp-action-step" wx:for="{{item.actions}}" wx:for-item="action" wx:key="phase">
+                <text class="rp-step-tag">{{action.phase || ''}}</text>
+                <text class="rp-step-text">{{action.description || action.analysis || ''}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class="rp-divider" wx:if="{{vipResult.pitfallGuide}}">
+        <text class="rp-section-title">个性化避坑指南</text>
+        <view class="rp-risk-card" style="background:#fef2f2;border:2rpx solid #fecaca;">
+          <text class="rp-text-sm" style="color:#b91c1c;">{{vipResult.pitfallGuide}}</text>
+        </view>
+      </view>
+
+      <view class="rp-divider" wx:if="{{vipResult.completeActionPlan}}">
+        <text class="rp-section-title">完整行动规划</text>
+        <view class="rp-industry-card-vip" style="background:linear-gradient(135deg,#fffbeb,#fefce8);">
+          <text class="rp-text-sm" style="color:#b45309;">{{vipResult.completeActionPlan}}</text>
+        </view>
+      </view>
+
+      <view class="rp-divider" wx:if="{{vipResult.risks && vipResult.risks.length > 0}}">
+        <text class="rp-section-title">风险提示</text>
+        <view wx:for="{{vipResult.risks}}" wx:key="type">
+          <view class="rp-risk-card">
+            <text class="rp-risk-title">⚡ {{item.type || '风险'}}</text>
+            <text class="rp-risk-body">{{item.description || item.analysis || ''}}</text>
+            <text class="rp-risk-mitigation" wx:if="{{item.mitigation}}">应对建议: {{item.mitigation}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 支付弹窗 -->
+<view class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center" wx:if="{{showPaymentModal}}" bindtap="hidePaymentModal">
+  <view class="bg-white rounded-2xl shadow-2xl w-full max-w-md mx-4 overflow-hidden" catchtap="stopPropagation">
+    <!-- 头部 -->
+    <view class="bg-gradient-to-r from-primary to-secondary px-6 py-4">
+      <view class="flex items-center justify-between">
+        <text class="text-white font-semibold text-lg">确认支付</text>
+        <button bindtap="hidePaymentModal" class="text-white/80 hover:text-white text-2xl">
+          ×
+        </button>
+      </view>
+    </view>
+    
+    <!-- 内容 -->
+    <view class="p-6">
+      <!-- 商品信息 -->
+      <view class="flex items-center justify-between mb-6 p-4 bg-gray-50 rounded-lg" wx:if="{{paymentVersionName && paymentPrice}}">
+        <view>
+          <text class="font-medium text-gray-800 block">{{paymentVersionName}}</text>
+          <text class="text-xs text-gray-500 mt-1 block">订单号: {{currentOrderId}}</text>
+        </view>
+        <text class="text-2xl font-bold text-primary">{{paymentPrice}}</text>
+      </view>
+      
+      <!-- 二维码区域 -->
+      <view class="text-center mb-4">
+        <view class="inline-block p-4 bg-white rounded-lg border border-gray-200">
+          <text class="text-gray-400 text-sm">支付二维码区域</text>
+        </view>
+        <text class="text-sm text-gray-500 mt-3 block">请使用微信/支付宝扫描二维码支付</text>
+      </view>
+      
+      <!-- 支付状态 -->
+      <view class="text-center">
+        <text class="text-sm {{paymentStatus.includes('成功') ? 'text-green-600' : 'text-gray-600'}}">{{paymentStatus}}</text>
+      </view>
+      
+      <!-- 模拟支付按钮（测试用） -->
+      <view class="mt-6 pt-4 border-t border-gray-100">
+        <button bindtap="simulatePayment" class="w-full py-2 px-4 bg-green-500 hover:bg-green-600 text-white rounded-lg text-sm font-medium transition flex items-center justify-center gap-2">
+          <text>✓</text>
+          模拟支付成功（测试用）
+        </button>
+        <text class="text-xs text-gray-400 mt-2 block text-center">点击后模拟支付完成，用于开发测试</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 抖音支付弹窗（独立组件） -->
+<payment-modal 
+  show="{{showDouyinPayModal}}" 
+  version="{{currentPaymentVersion}}" 
+  versionName="{{paymentVersionName}}" 
+  price="{{paymentPrice}}" 
+  orderId="{{currentOrderId}}"
+  bind:close="closeDouyinPayModal"
+  bind:success="douyinPaySimulate"
+/>
+
+<!-- 每日限制弹窗 -->
+<view class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center" wx:if="{{showLightLimitModal}}" bindtap="closeLightLimitModal">
+  <view class="bg-white rounded-2xl shadow-2xl w-full max-w-md mx-4 overflow-hidden" catchtap="stopPropagation">
+    <view class="bg-gradient-to-r from-amber-500 to-orange-500 px-6 py-4">
+      <text class="text-white font-semibold text-lg">每日限制</text>
+    </view>
+    <view class="p-6 text-center">
+      <text class="text-6xl mb-4 block">⏰</text>
+      <text class="text-xl font-bold text-gray-800 mb-2 block">今日已使用免费测试</text>
+      <text class="text-gray-600 mb-6 block">每个设备每天只能免费测试一次<br>明天再来吧！</text>
+      <view class="space-y-3">
+        <button bindtap="closeLightLimitModal" class="w-full py-3 rounded-xl bg-gray-100 text-gray-700 font-medium hover:bg-gray-200 transition">
+          我知道了
+        </button>
+        <button bindtap="closeLightLimitModalAndGoPay" class="w-full py-3 rounded-xl bg-gradient-to-r from-primary to-secondary text-white font-semibold hover:shadow-lg transition">
+          升级深度版（¥9.9）
+        </button>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,35 @@
+# 职路星途 - TRAE 部署配置
+name: career-planner
+version: "1.0.0"
+description: "职路星途 AI职业规划测评服务"
+
+runtime:
+  type: python
+  version: "3.10"
+
+service:
+  port: 8000
+  protocol: http
+  health_check:
+    path: /api/health
+    interval: 30
+    timeout: 10
+    healthy_threshold: 2
+    unhealthy_threshold: 3
+
+env:
+  - name: PORT
+    value: "8000"
+  - name: DB_TYPE
+    value: "sqlite"
+
+build:
+  dockerfile: Dockerfile
+  context: .
+
+deploy:
+  replicas: 1
+  cpu: "0.5"
+  memory: "512Mi"
+  max_surge: "25%"
+  max_unavailable: "25%"

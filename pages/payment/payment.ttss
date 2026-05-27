@@ -1,0 +1,186 @@
+/* 支付页样式 */
+.container {
+  padding-bottom: 200rpx;
+}
+
+/* Order Summary */
+.summary-header {
+  margin-bottom: 24rpx;
+  padding-bottom: 24rpx;
+  border-bottom: 2rpx solid #f1f5f9;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16rpx 0;
+}
+
+.summary-label {
+  font-size: 28rpx;
+  color: #64748b;
+}
+
+.summary-value {
+  font-size: 28rpx;
+  color: #1e293b;
+  font-weight: 600;
+}
+
+.summary-price {
+  font-size: 40rpx;
+  color: #6366f1;
+  font-weight: 800;
+}
+
+/* Payment Methods */
+.section-header {
+  margin-bottom: 20rpx;
+}
+
+.section-header .h3 {
+  color: #1e293b;
+}
+
+.method-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.method-item {
+  display: flex;
+  align-items: center;
+  padding: 24rpx;
+  border: 3rpx solid transparent;
+}
+
+.method-item.selected {
+  border-color: #6366f1;
+  background: rgba(99, 102, 241, 0.05);
+}
+
+.method-icon {
+  font-size: 48rpx;
+  margin-right: 20rpx;
+}
+
+.method-info {
+  flex: 1;
+}
+
+.method-name {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 4rpx;
+}
+
+.method-desc {
+  font-size: 24rpx;
+  color: #94a3b8;
+}
+
+.method-check {
+  width: 40rpx;
+  height: 40rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.check-icon {
+  width: 40rpx;
+  height: 40rpx;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  border-radius: 50%;
+  position: relative;
+}
+
+.check-icon::after {
+  content: '';
+  position: absolute;
+  width: 10rpx;
+  height: 20rpx;
+  border: 4rpx solid white;
+  border-left: 0;
+  border-top: 0;
+  top: 8rpx;
+  left: 14rpx;
+  transform: rotate(45deg);
+}
+
+/* Payment Notes */
+.payment-notes {
+  background: #f8fafc;
+  padding: 24rpx;
+  border-radius: 20rpx;
+}
+
+.note-item {
+  display: flex;
+  align-items: center;
+  padding: 12rpx 0;
+}
+
+.note-icon {
+  font-size: 28rpx;
+  margin-right: 12rpx;
+}
+
+.note-text {
+  font-size: 26rpx;
+  color: #64748b;
+}
+
+/* Payment Footer */
+.payment-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  padding: 24rpx 32rpx;
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+  box-shadow: 0 -4rpx 20rpx rgba(0, 0, 0, 0.08);
+}
+
+.footer-info {
+  flex: 1;
+}
+
+.footer-label {
+  font-size: 26rpx;
+  color: #64748b;
+  margin-right: 8rpx;
+}
+
+.footer-price {
+  font-size: 44rpx;
+  color: #6366f1;
+  font-weight: 800;
+}
+
+.pay-btn {
+  flex: 0 0 auto;
+  margin: 0;
+  min-width: 240rpx;
+  border: none;
+}
+
+/* Test Section */
+.test-section {
+  margin-top: 40rpx;
+  padding: 24rpx;
+  background: #f0fdf4;
+  border: 2rpx solid #86efac;
+  border-radius: 20rpx;
+}
+
+.test-btn {
+  width: 100%;
+  margin-top: 16rpx;
+}

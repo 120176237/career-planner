@@ -1,0 +1,36 @@
+<view class="pm-overlay" wx:if="{{show}}" bindtap="onClose">
+  <view class="pm-container" catchtap="stopPropagation">
+    <view class="pm-header">
+      <text class="pm-header-title">确认支付</text>
+      <view class="pm-close-btn" bindtap="onClose">×</view>
+    </view>
+    <view class="pm-body">
+      <view class="pm-product">
+        <view class="pm-product-info">
+          <text class="pm-product-name">{{versionName}}</text>
+          <text class="pm-product-order">订单号: {{orderId}}</text>
+        </view>
+        <text class="pm-product-price">{{price}}</text>
+      </view>
+      <view class="pm-benefits">
+        <text class="pm-benefits-title">包含权益</text>
+        <view class="pm-benefit-list">
+          <view class="pm-benefit-item" wx:for="{{version === 'deep' ? deepBenefits : vipBenefits}}" wx:key="index">
+            <text class="pm-benefit-icon">✓</text>
+            <text class="pm-benefit-text">{{item}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="pm-status {{paymentStatus.indexOf('成功') > -1 ? 'pm-status-success' : ''}}">{{paymentStatus}}</view>
+      <view class="pm-actions">
+        <button class="pm-btn-real" bindtap="onRealPay" disabled="{{paying}}">
+          立即支付
+        </button>
+        <button class="pm-btn-simulate" bindtap="onSimulatePay" disabled="{{paying}}">
+          模拟支付（测试用）
+        </button>
+        <text class="pm-hint">测试期间可使用模拟支付体验完整流程</text>
+      </view>
+    </view>
+  </view>
+</view>

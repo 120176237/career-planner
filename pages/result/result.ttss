@@ -1,0 +1,244 @@
+/* 结果页样式 */
+.container {
+  padding-bottom: 80rpx;
+}
+
+/* Loading */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 70vh;
+  text-align: center;
+}
+
+.loading-spinner {
+  width: 100rpx;
+  height: 100rpx;
+  border: 6rpx solid #f1f5f9;
+  border-top: 6rpx solid #6366f1;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 32rpx;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-text {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 16rpx;
+}
+
+.loading-hint {
+  font-size: 26rpx;
+  color: #64748b;
+}
+
+/* Summary Card */
+.summary-card {
+  text-align: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.summary-icon {
+  font-size: 80rpx;
+  margin-bottom: 16rpx;
+}
+
+.summary-title {
+  font-size: 36rpx;
+  font-weight: 700;
+  margin-bottom: 20rpx;
+}
+
+.summary-text {
+  font-size: 30rpx;
+  line-height: 1.6;
+  opacity: 0.95;
+}
+
+/* Section */
+.section-header {
+  margin-bottom: 24rpx;
+}
+
+.section-header .h3 {
+  color: #1e293b;
+}
+
+/* Industry List */
+.industry-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.industry-card {
+  display: flex;
+  padding: 28rpx;
+}
+
+.industry-rank {
+  width: 60rpx;
+  height: 60rpx;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28rpx;
+  font-weight: 700;
+  margin-right: 24rpx;
+  flex-shrink: 0;
+}
+
+.industry-info {
+  flex: 1;
+}
+
+.industry-name {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 8rpx;
+}
+
+.industry-match {
+  font-size: 26rpx;
+  color: #6366f1;
+  font-weight: 600;
+  margin-bottom: 8rpx;
+}
+
+.industry-desc {
+  font-size: 26rpx;
+  color: #64748b;
+  line-height: 1.5;
+}
+
+/* Detail Card */
+.detail-content {
+  font-size: 28rpx;
+  color: #334155;
+  line-height: 1.8;
+}
+
+/* Action List */
+.action-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.action-item {
+  padding: 28rpx;
+}
+
+.action-title {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 10rpx;
+}
+
+.action-desc {
+  font-size: 26rpx;
+  color: #64748b;
+  line-height: 1.6;
+}
+
+/* Upgrade Section */
+.upgrade-section {
+  position: sticky;
+  bottom: 32rpx;
+}
+
+.upgrade-card {
+  background: linear-gradient(135deg, #fef3c7, #fde68a);
+  border: 3rpx solid #f59e0b;
+  text-align: center;
+}
+
+.upgrade-title {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #92400e;
+  margin-bottom: 12rpx;
+}
+
+.upgrade-desc {
+  font-size: 26rpx;
+  color: #b45309;
+  margin-bottom: 24rpx;
+}
+
+.upgrade-btn {
+  background: #f59e0b;
+  color: white;
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  gap: 20rpx;
+  margin-top: 32rpx;
+}
+
+.action-buttons .btn-primary,
+.action-buttons .btn-secondary {
+  flex: 1;
+  margin: 0;
+}
+
+/* Polling */
+.polling-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  text-align: center;
+}
+
+.polling-icon {
+  font-size: 120rpx;
+  margin-bottom: 24rpx;
+}
+
+.polling-title {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 16rpx;
+}
+
+.polling-hint {
+  font-size: 26rpx;
+  color: #64748b;
+  margin-bottom: 48rpx;
+}
+
+.polling-status {
+  font-size: 28rpx;
+  color: #6366f1;
+  margin-top: 24rpx;
+}
+
+.polling-tips {
+  margin-top: 48rpx;
+  font-size: 24rpx;
+  color: #94a3b8;
+}
+
+/* Fade In */
+.fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}

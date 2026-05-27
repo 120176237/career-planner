@@ -1,0 +1,176 @@
+<view class="container">
+  <!-- 头部统计 -->
+  <view class="header">
+    <view class="stats">
+      <view class="stat-item">
+        <text class="stat-value">{{ consults.length }}</text>
+        <text class="stat-label">总咨询</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-value">{{ pendingCount }}</text>
+        <text class="stat-label">待处理</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-value">{{ completedCount }}</text>
+        <text class="stat-label">已完成</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 搜索和筛选 -->
+  <view class="filter-section">
+    <input 
+      class="search-input" 
+      placeholder="搜索咨询..." 
+      value="{{ searchQuery }}"
+      bindinput="onSearchInput"
+    />
+    <view class="filter-tabs">
+      <view 
+        class="filter-tab {{ currentFilter === 'all' ? 'active' : '' }}"
+        bindtap="setFilter"
+        data-filter="all"
+      >
+        全部
+      </view>
+      <view 
+        class="filter-tab {{ currentFilter === 'pending' ? 'active' : '' }}"
+        bindtap="setFilter"
+        data-filter="pending"
+      >
+        待处理
+      </view>
+      <view 
+        class="filter-tab {{ currentFilter === 'completed' ? 'active' : '' }}"
+        bindtap="setFilter"
+        data-filter="completed"
+      >
+        已完成
+      </view>
+    </view>
+  </view>
+
+  <!-- 咨询列表 -->
+  <view class="consult-list" wx:if="{{ !loading }}">
+    <view 
+      wx:for="{{ filteredConsults }}" 
+      wx:key="consultId"
+      class="consult-item card"
+      bindtap="viewDetail"
+      data-id="{{ item.consultId }}"
+    >
+      <view class="consult-header">
+        <view class="consult-title">
+          <text class="user-name">{{ item.name || '匿名用户' }}</text>
+          <text class="user-type-badge user-type-{{ item.userType }}">
+            {{ userTypeNames[item.userType] }}
+          </text>
+        </view>
+        <view class="status-badge status-{{ item.status }}">
+          {{ statusNames[item.status] }}
+        </view>
+      </view>
+      
+      <view class="consult-info">
+        <view wx:if="{{ item.email }}" class="info-row">
+          <text class="info-label">📧</text>
+          <text class="info-value">{{ item.email }}</text>
+        </view>
+        <view wx:if="{{ item.phone }}" class="info-row">
+          <text class="info-label">📱</text>
+          <text class="info-value">{{ item.phone }}</text>
+        </view>
+        <view class="info-row">
+          <text class="info-label">🕐</text>
+          <text class="info-value">{{ formatTime(item.createdAt) }}</text>
+        </view>
+      </view>
+      
+      <view class="consult-preview" wx:if="{{ item.consultText }}">
+        <text class="preview-text">{{ item.consultText.substring(0, 80) }}...</text>
+      </view>
+      
+      <view class="consult-actions">
+        <button 
+          class="action-btn secondary" 
+          catchtap="deleteConsult"
+          data-id="{{ item.consultId }}"
+        >
+          删除
+        </button>
+      </view>
+    </view>
+    
+    <!-- 空状态 -->
+    <view wx:if="{{ filteredConsults.length === 0 }}" class="empty-state">
+      <text class="empty-icon">📭</text>
+      <text class="empty-text">暂无咨询记录</text>
+    </view>
+  </view>
+
+  <!-- 加载中 -->
+  <view wx:if="{{ loading }}" class="loading-state">
+    <view class="loading-spinner"></view>
+    <text class="loading-text">加载中...</text>
+  </view>
+
+  <!-- 详情弹窗 -->
+  <view wx:if="{{ showDetail }}" class="modal-overlay" bindtap="closeDetail">
+    <view class="modal-content" catchtap="stopPropagation">
+      <view class="modal-header">
+        <text class="modal-title">咨询详情</text>
+        <button class="modal-close" bindtap="closeDetail">×</button>
+      </view>
+      
+      <scroll-view class="modal-body" scroll-y="true">
+        <view class="detail-section" wx:if="{{ currentConsult }}">
+          <view class="detail-row">
+            <text class="detail-label">姓名</text>
+            <text class="detail-value">{{ currentConsult.name || '未提供' }}</text>
+          </view>
+          <view class="detail-row" wx:if="{{ currentConsult.email }}">
+            <text class="detail-label">邮箱</text>
+            <text class="detail-value">{{ currentConsult.email }}</text>
+          </view>
+          <view class="detail-row" wx:if="{{ currentConsult.phone }}">
+            <text class="detail-label">电话</text>
+            <text class="detail-value">{{ currentConsult.phone }}</text>
+          </view>
+          <view class="detail-row">
+            <text class="detail-label">用户类型</text>
+            <text class="detail-value">{{ userTypeNames[currentConsult.userType] }}</text>
+          </view>
+          
+          <view class="divider"></view>
+          
+          <view class="detail-section">
+            <text class="section-title">咨询内容</text>
+            <text class="detail-text">{{ currentConsult.consultText || '无' }}</text>
+          </view>
+          
+          <view class="detail-section" wx:if="{{ currentConsult.questions }}">
+            <text class="section-title">答题数据</text>
+            <view class="answers-preview">
+              <view wx:for="{{ Object.entries(currentConsult.answers || {}) }}" wx:key="index" class="answer-row">
+                <text class="answer-q">Q{{ index + 1 }}:</text>
+                <text class="answer-a">{{ item[1] }}</text>
+              </view>
+            </view>
+          </view>
+          
+          <view class="detail-section" wx:if="{{ currentConsult.reportData }}">
+            <text class="section-title">分析报告</text>
+            <view class="report-preview">
+              <text>{{ JSON.stringify(currentConsult.reportData, null, 2) }}</text>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+      
+      <view class="modal-footer">
+        <button class="modal-btn secondary" bindtap="closeDetail">关闭</button>
+        <button class="modal-btn danger" bindtap="confirmDelete" wx:if="{{ currentConsult }}">删除</button>
+      </view>
+    </view>
+  </view>
+</view>

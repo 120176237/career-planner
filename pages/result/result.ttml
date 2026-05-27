@@ -1,0 +1,111 @@
+<view class="container" wx:if="{{!polling}}">
+  <!-- 轮询中 -->
+  <view wx:if="{{loading}}" class="loading-container">
+    <view class="loading-spinner pulse"></view>
+    <view class="loading-text">AI正在分析中...</view>
+    <view class="loading-hint">这可能需要10-30秒，请稍候</view>
+  </view>
+
+  <!-- 结果展示 -->
+  <view wx:if="{{!loading && analysis}}" class="result-content fade-in">
+    <!-- 摘要卡片 -->
+    <view class="summary-card card">
+      <view class="summary-icon">🎯</view>
+      <view class="summary-title">您的职业方向分析</view>
+      <view class="summary-text">{{analysis.summary}}</view>
+    </view>
+
+    <!-- 行业推荐 -->
+    <view class="section mt-24" wx:if="{{analysis.industries && analysis.industries.length > 0}}">
+      <view class="section-header">
+        <text class="h3">推荐行业</text>
+      </view>
+      
+      <view class="industry-list">
+        <view 
+          wx:for="{{analysis.industries}}" 
+          wx:key="name"
+          class="industry-card card card-hover"
+        >
+          <view class="industry-rank">#{{index + 1}}</view>
+          <view class="industry-info">
+            <view class="industry-name">{{item.name}}</view>
+            <view class="industry-match">匹配度: {{item.match}}</view>
+            <view class="industry-desc">{{item.description}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 详细分析（深度版/VIP版） -->
+    <view class="section mt-24" wx:if="{{analysis.details && (version === 'deep' || version === 'vip')}}">
+      <view class="section-header">
+        <text class="h3">详细分析</text>
+      </view>
+      
+      <view class="detail-card card">
+        <view class="detail-content">
+          <text>{{analysis.details}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 行动建议 -->
+    <view class="section mt-24" wx:if="{{analysis.actionPlan}}">
+      <view class="section-header">
+        <text class="h3">行动建议</text>
+      </view>
+      
+      <view class="action-list">
+        <view 
+          wx:for="{{analysis.actionPlan}}" 
+          wx:key="title"
+          class="action-item card"
+        >
+          <view class="action-title">{{item.title}}</view>
+          <view class="action-desc">{{item.description}}</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 升级提示（轻量版） -->
+    <view class="upgrade-section mt-24" wx:if="{{version === 'light'}}">
+      <view class="upgrade-card card">
+        <view class="upgrade-title">🔬 想要更深入的分析？</view>
+        <view class="upgrade-desc">解锁深度版，获得完整报告</view>
+        <button class="btn-primary upgrade-btn" bindtap="goUpgrade">
+          升级到深度版 ¥9.9
+        </button>
+      </view>
+    </view>
+
+    <!-- 操作按钮 -->
+    <view class="action-buttons mt-24">
+      <button class="btn-secondary" bindtap="shareResult">
+        分享结果
+      </button>
+      <button class="btn-primary" bindtap="startOver">
+        重新测评
+      </button>
+    </view>
+  </view>
+</view>
+
+<!-- 轮询页面 -->
+<view class="container" wx:if="{{polling}}">
+  <view class="polling-container">
+    <view class="polling-icon">🤖</view>
+    <view class="polling-title">AI正在分析您的数据</view>
+    <view class="polling-hint">这通常需要10-30秒</view>
+    
+    <view class="progress-bar">
+      <view class="progress-bar-fill" style="width: {{progress}}%"></view>
+    </view>
+    
+    <view class="polling-status">{{statusText}}</view>
+    
+    <view class="polling-tips">
+      <text>💡 提示：您可以稍后回来查看结果</text>
+    </view>
+  </view>
+</view>
