@@ -1,0 +1,7 @@
+fastapi
+uvicorn
+httpx
+portalocker
+requests
+pymysql
+cryptography
