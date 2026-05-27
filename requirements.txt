@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+python-multipart
+pycryptodome
+httpx
+portalocker
+requests
+pymysql
+cryptography
